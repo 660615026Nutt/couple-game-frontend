@@ -1,10 +1,15 @@
+/* =========================================
+   Global & Layout (โทนสีพื้นหลังละมุนตา)
+========================================= */
 body {
   margin: 0;
-  background-color: #f8fafc;
+  /* เปลี่ยนพื้นหลังเป็นสีครีมอมชมพูอ่อนๆ สบายตา */
+  background-color: #fff9fa;
+  color: #334155;
 }
 
 .game-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   padding: 20px;
   max-width: 1000px;
@@ -15,74 +20,43 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .title {
-  color: #e11d48;
+  color: #fb7185; /* สีชมพู Rose อ่อนละมุน */
   font-size: 32px;
   margin: 0;
+  text-shadow: 1px 1px 0px #ffe4e6;
 }
 
-.btn-guide {
-  background: #3b82f6;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
-}
-
+/* =========================================
+   Boards & Panels (กระดานและกล่องข้อความ)
+========================================= */
 .status-board {
   background: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  margin-bottom: 20px;
+  padding: 15px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  margin-bottom: 25px;
+  border: 1px solid #f1f5f9;
 }
 
 .turn-info {
   font-size: 20px;
   margin: 0;
+  color: #64748b;
 }
-.p1-text { color: #0284c7; }
-.p2-text { color: #db2777; }
+
+.p1-text { color: #38bdf8; font-weight: bold; } /* ฟ้าสว่าง */
+.p2-text { color: #fb7185; font-weight: bold; } /* ชมพูสว่าง */
 
 .message-box {
   font-size: 18px;
-  color: #4f46e5;
+  color: #6366f1;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 12px;
   min-height: 27px;
-}
-
-.deck-area {
-  margin: 20px 0;
-}
-
-.btn-draw {
-  padding: 15px 40px;
-  font-size: 20px;
-  font-weight: bold;
-  background: #f43f5e;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 6px 12px rgba(244, 63, 94, 0.3);
-}
-
-.btn-restart {
-  padding: 15px 40px;
-  font-size: 20px;
-  font-weight: bold;
-  background: #10b981;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
 }
 
 .board {
@@ -95,24 +69,76 @@ body {
 .player-area {
   background: white;
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 20px; /* โค้งมนขึ้น */
   width: 45%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: all 0.3s;
-  border: 4px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s ease;
+  border: 3px solid transparent;
 }
 
+/* ไฮไลท์คนกำลังเล่นให้นุ่มนวล */
 .active-player {
-  border-color: #f43f5e;
-  transform: scale(1.02);
+  border-color: #fda4af;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(251, 113, 133, 0.15);
   opacity: 1;
 }
 
 .inactive-player {
   border-color: transparent;
-  opacity: 0.6;
+  opacity: 0.5; /* หรี่แสงลงให้รู้ว่ายังไม่ใช่ตาตัวเอง */
+  filter: grayscale(20%);
 }
 
+/* =========================================
+   Buttons (ปุ่มกดแบบซอฟต์ๆ แต่ดูน่ากด)
+========================================= */
+.deck-area {
+  margin: 25px 0;
+}
+
+.btn-draw {
+  padding: 15px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #fb7185, #f43f5e); /* ไล่สีชมพู */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(244, 63, 94, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-draw:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 63, 94, 0.35);
+}
+
+.btn-draw.disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-guide {
+  background: #bae6fd;
+  color: #0284c7;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-guide:hover { background: #7dd3fc; }
+
+/* =========================================
+   Cards (ปรับสีการ์ดดงระเบิดให้เป็นพาสเทล)
+========================================= */
 .hand {
   display: flex;
   flex-wrap: wrap;
@@ -122,100 +148,62 @@ body {
 }
 
 .card {
-  padding: 10px;
-  border-radius: 8px;
-  border: 2px solid #e5e7eb;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid transparent;
   cursor: pointer;
-  width: 90px;
-  height: 120px;
+  width: 95px;
+  height: 130px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  transition: all 0.2s ease;
+}
+
+.card.playable:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  border-color: #fb7185;
 }
 
 .card-desc {
-  font-size: 10px;
-  margin-top: 5px;
-  color: #555;
-  line-height: 1.2;
+  font-size: 11px;
+  margin-top: 8px;
+  color: #475569;
+  line-height: 1.3;
+  opacity: 0.9;
 }
 
-/* สีการ์ดและหลังการ์ด */
-.card-back { background: #cbd5e1; color: #475569; font-size: 32px; border-color: #94a3b8; cursor: not-allowed; }
-.card.defuse { background: #dcfce3; border-color: #86efac; }
-.card.skip { background: #e0f2fe; border-color: #7dd3fc; }
-.card.attack { background: #fee2e2; border-color: #fca5a5; }
-.card.task { background: #fef08a; border-color: #fde047; }
-.card.see { background: #f3e8ff; border-color: #d8b4fe; }
+/* สีการ์ดดงระเบิด (พาสเทล) */
+.card-back { background: #e2e8f0; color: #94a3b8; font-size: 32px; border-color: #cbd5e1; cursor: not-allowed; }
+.card.defuse { background: #dcfce3; color: #166534; border-color: #bbf7d0; }
+.card.skip { background: #e0f2fe; color: #075985; border-color: #bae6fd; }
+.card.attack { background: #ffe4e6; color: #9f1239; border-color: #fecdd3; }
+.card.task { background: #fef9c3; color: #854d0e; border-color: #fde047; }
+.card.see { background: #f3e8ff; color: #581c87; border-color: #e9d5ff; }
 
-/* คู่มือ (Modal) */
-.modal-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+/* =========================================
+   UNO Cards (สีไม่แสบตา ละมุนขึ้น)
+========================================= */
+.card.uno-card {
+  font-size: 20px;
 }
+/* แดงแตงโม */
+.card.red { background-color: #fb7185; border-color: #f43f5e; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+/* ฟ้าสกายบลู */
+.card.blue { background-color: #38bdf8; border-color: #0284c7; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+/* เขียวมินต์ */
+.card.green { background-color: #34d399; border-color: #059669; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+/* เหลืองมัสตาร์ดสว่าง (เปลี่ยนสีฟอนต์เป็นเทาเข้มให้อ่านง่าย) */
+.card.yellow { background-color: #fde047; border-color: #eab308; color: #334155; text-shadow: none; }
 
-.modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 500px;
-  text-align: left;
-}
 
-.modal-content h2 {
-  margin-top: 0;
-  color: #1e293b;
-  text-align: center;
-}
-
-.guide-list {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-.guide-list li {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.guide-card-icon {
-  width: 30px;
-  height: 40px;
-  border-radius: 4px;
-  margin-right: 15px;
-  flex-shrink: 0;
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-.guide-text p {
-  margin: 5px 0 0 0;
-  font-size: 14px;
-  color: #64748b;
-}
-
-.btn-close {
-  width: 100%;
-  padding: 12px;
-  background: #e2e8f0;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
+/* =========================================
+   Setup & Login (หน้าก่อนเข้าห้อง)
+========================================= */
 .flex-center {
   display: flex;
   align-items: center;
@@ -226,8 +214,8 @@ body {
 .setup-box {
   background: white;
   padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(251, 113, 133, 0.1);
   text-align: center;
   width: 100%;
   max-width: 400px;
@@ -235,52 +223,118 @@ body {
 
 .setup-box p {
   color: #64748b;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .name-input {
   width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 15px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  background: #f8fafc;
   border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 16px;
   box-sizing: border-box;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
+  color: #334155;
 }
 
 .name-input:focus {
-  border-color: #f43f5e;
+  border-color: #fb7185;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(251, 113, 133, 0.15);
 }
 
-.btn-draw.disabled {
-  background: #cbd5e1;
-  box-shadow: none;
-  cursor: not-allowed;
-  transform: none;
+/* =========================================
+   Modals & Animations
+========================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
-.card.playable:hover {
-  transform: translateY(-5px);
-  border-color: #f43f5e;
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 450px;
+  text-align: left;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #1e293b;
+  text-align: center;
+  border-bottom: 2px dashed #e2e8f0;
+  padding-bottom: 15px;
+}
+
+.guide-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.guide-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.guide-card-icon {
+  width: 35px;
+  height: 50px;
+  border-radius: 6px;
+  margin-right: 15px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.guide-text p {
+  margin: 5px 0 0 0;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.btn-close {
+  width: 100%;
+  padding: 14px;
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-close:hover {
+  background: #e2e8f0;
+  color: #1e293b;
 }
 
 .loader {
-  margin-top: 20px;
-  color: #f43f5e;
+  margin-top: 25px;
+  color: #fb7185;
+  font-size: 18px;
   font-weight: bold;
   animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.98); }
 }
-
-/* สีไพ่ UNO */
-.card.uno-card { color: white; border: 2px solid white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-.card.red { background-color: #ef4444; }
-.card.blue { background-color: #3b82f6; }
-.card.green { background-color: #10b981; }
-.card.yellow { background-color: #eab308; color: #333; text-shadow: none; }
