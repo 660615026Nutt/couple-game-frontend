@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import './App.css';
 
-const socket = io('hhttps://couple-game-api-olav.onrender.com'); // เปลี่ยนลิงก์เป็น IP หรือ Render ของคุณ
+const socket = io('https://couple-game-api-olav.onrender.com'); // เปลี่ยนลิงก์เป็น IP หรือ Render ของคุณ
 
 export default function App() {
   const [roomId, setRoomId] = useState('');
