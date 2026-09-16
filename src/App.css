@@ -338,3 +338,46 @@ body {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.6; transform: scale(0.98); }
 }
+
+/* สีไพ่เสริม (Wild) และตัวอักษรสี */
+.card.wild { background: linear-gradient(135deg, #ef4444 25%, #3b82f6 25% 50%, #10b981 50% 75%, #eab308 75%); border-color: #333; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+.txt-red { color: #ef4444; font-weight: bold; text-transform: uppercase; }
+.txt-blue { color: #3b82f6; font-weight: bold; text-transform: uppercase; }
+.txt-green { color: #10b981; font-weight: bold; text-transform: uppercase; }
+.txt-yellow { color: #eab308; font-weight: bold; text-transform: uppercase; }
+
+/* หน้าต่างเลือกสี */
+.color-btn {
+  width: 50px; height: 50px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s;
+}
+.color-btn:hover { transform: scale(1.1); }
+.color-btn.red { background-color: #fb7185; }
+.color-btn.blue { background-color: #38bdf8; }
+.color-btn.green { background-color: #34d399; }
+.color-btn.yellow { background-color: #fde047; }
+
+/* ปุ่มแพนิคฉุกเฉิน (UNO / WIN) */
+.panic-btn {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: bold;
+  padding: 20px 40px;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  z-index: 9999;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: panicPulse 0.4s infinite alternate;
+}
+
+.uno-btn { background: #ef4444; border: 4px solid white; }
+.win-btn { background: #eab308; border: 4px solid white; color: #333; }
+
+@keyframes panicPulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+}
