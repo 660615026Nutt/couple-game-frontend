@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import './App.css';
 
 // เชื่อมต่อไปหา Backend (ถ้าเอาไปขึ้นเว็บจริง ต้องเปลี่ยนเป็นลิงก์ Server จริง)
-const socket = io('http://localhost:3001');
+const socket = io('https://couple-game-api-olav.onrender.com');
 
 const cardGuide = [
   { type: 'defuse', name: '🛡️ การ์ดง้อ', desc: 'มีติดมือไว้ป้องกัน "ระเบิดความงอน" (ระบบใช้ให้อัตโนมัติ)' },
